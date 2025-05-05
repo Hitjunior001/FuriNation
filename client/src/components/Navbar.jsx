@@ -43,7 +43,7 @@ const Navbar = () => {
             Notícias
             <div className="underline-bar"></div>
             </Link>
-            <Link to="/livechat" className="relative text-white font-semibold hover:text-gray-300 transition-all">
+            <Link to="/matches" className="relative text-white font-semibold hover:text-gray-300 transition-all">
             Chat ao vivo
             <div className="underline-bar"></div>
             </Link>

@@ -14,8 +14,6 @@ export default function LiveChat() {
     ]);
     const [newMessage, setNewMessage] = useState('');
 
-    const [votes, setVotes] = useState({ timeA: 0, timeB: 0 });
-
     const socketRef = useRef(null);
 
     useEffect(() => {
@@ -30,13 +28,6 @@ export default function LiveChat() {
 
             newSocket.on('receiveMessage', (message) => {
                 setMessages((prevMessages) => [...prevMessages, message]);
-            });
-
-            newSocket.on('receiveVote', (vote) => {
-                setVotes((prevVotes) => ({
-                    ...prevVotes,
-                    [vote.team]: (prevVotes[vote.team] || 0) + 1
-                }));
             });
 
             return () => {
@@ -57,23 +48,16 @@ export default function LiveChat() {
         }
     };
 
-    const sendVote = (team) => {
-        if (socketRef.current) {
-            socketRef.current.emit('sendVote', { team });
-        }
-    };
-
     const handleEmojiClick = (emojiData) => {
         setNewMessage(prev => prev + emojiData.emoji);
     };
 
     return (
-        <section className="bg-black text-white py-16 px-6 min-h-screen">
-            <Navbar />
+        <><Navbar /><section className="bg-gray-900 text-white py-16 px-6 min-h-screen">
             <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
 
                 <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg relative">
-                    <div className="w-full h-64 md:h-96 bg-gray-900 flex items-center justify-center text-3xl font-bold text-white">
+                    <div className="w-full h-64 md:h-96 bg-black flex items-center justify-center text-3xl font-bold text-white">
                         🕹️ Transmissão ao Vivo
                     </div>
                     <div className="absolute top-2 left-2 bg-red-600 text-white text-sm font-semibold px-3 py-1 rounded-full">
@@ -92,7 +76,7 @@ export default function LiveChat() {
                                 initial={{ opacity: 0, x: 40 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: index * 0.05 }}
-                                className={`p-2 rounded-lg ${msg.user === 'Você' ? 'bg-blue-200 self-end' : 'bg-gray-300'}`}
+                                className={`p-2 rounded-lg 'bg-gray-300'}`}
                             >
                                 <strong>{msg.user}:</strong> {msg.text}
                             </motion.div>
@@ -100,8 +84,8 @@ export default function LiveChat() {
                     </div>
 
                     {showEmojiPicker && (
-                        <div className="p-2 border-t border-gray-300">
-                            <EmojiPicker onEmojiClick={handleEmojiClick} />
+                        <div className="p-2 border-t border-gray-300 absolute top-100">
+                            <EmojiPicker onEmojiClick={handleEmojiClick} className='overflow-y-auto' />
                         </div>
                     )}
 
@@ -118,8 +102,7 @@ export default function LiveChat() {
                             onChange={(e) => setNewMessage(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
                             placeholder="Mande seu grito de torcida..."
-                            className="flex-1 p-2 border border-gray-300 outline-none"
-                        />
+                            className="flex-1 p-2 border border-gray-300 outline-none" />
                         <button
                             onClick={sendMessage}
                             className="bg-blue-600 text-white px-4 rounded-r-lg hover:bg-blue-700 flex items-center"
@@ -127,27 +110,9 @@ export default function LiveChat() {
                             <FaPaperPlane />
                         </button>
                     </div>
-
-                    <div className="bg-gray-200 text-center py-3 border-t border-gray-300">
-                        <div className="font-semibold mb-2">🏆 Quem vai ganhar?</div>
-                        <div className="flex justify-around text-sm">
-                            <button
-                                onClick={() => sendVote('timeA')}
-                                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                            >
-                                Time A ({votes.timeA})
-                            </button>
-                            <button
-                                onClick={() => sendVote('timeB')}
-                                className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                            >
-                                Time B ({votes.timeB})
-                            </button>
-                        </div>
-                    </div>
                 </div>
 
             </div>
-        </section>
+        </section></>
     );
 }

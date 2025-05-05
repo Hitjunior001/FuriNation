@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage'
 import LiveChat from './components/LiveChatComponent'
 import ProtectedRoute from './components/ProtectRouteComponent';
 import "./App.css"
+import MatchesComponent from './components/MatchesComponent'
 
 
 
@@ -16,10 +17,18 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route
-          path="/livechat"
+          path="/livechat/:id"
           element={
             <ProtectedRoute>
               <LiveChat /> 
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/matches"
+          element={
+            <ProtectedRoute>
+              <MatchesComponent/>
             </ProtectedRoute>
           }
         />

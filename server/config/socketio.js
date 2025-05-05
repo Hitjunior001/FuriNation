@@ -23,11 +23,6 @@ module.exports = function (server) {
         socket.on('sendMessage', (message) => {
             io.emit('receiveMessage', message);
         });
-
-        socket.on('sendVote', (team) => {
-            io.emit('receiveVote', team);
-        });
-
         socket.on('disconnect', () => {
             console.log('Usuário desconectado: ' + socket.id);
 
