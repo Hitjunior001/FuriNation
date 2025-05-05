@@ -15,14 +15,16 @@ module.exports = function (server) {
     io.on('connection', (socket) => {
         console.log('Usuário conectado: ' + socket.id);
 
-        socket.on('register', (email) => {
+        socket.on('register', (email, room ) => {
             users[email] = socket.id;
-            console.log(`Usuário registrado: ${email}`);
+            socket.join(room);
+            console.log(`Usuário registrado: ${email} na sala: ${room}`);
         });
 
-        socket.on('sendMessage', (message) => {
-            io.emit('receiveMessage', message);
+        socket.on('sendMessage', ({ room, message }) => {
+            io.to(room).emit('receiveMessage', message);
         });
+
         socket.on('disconnect', () => {
             console.log('Usuário desconectado: ' + socket.id);
 

@@ -17,7 +17,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route
-          path="/livechat/:id"
+          path="/livechat/:room"
           element={
             <ProtectedRoute>
               <LiveChat /> 

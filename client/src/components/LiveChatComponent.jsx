@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
+import {useParams} from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaPaperPlane, FaSmile } from 'react-icons/fa';
 import { io } from 'socket.io-client';
@@ -13,6 +14,7 @@ export default function LiveChat() {
         { user: 'Admin', text: '🏟️ Bem-vindo à torcida ao vivo!' }
     ]);
     const [newMessage, setNewMessage] = useState('');
+    const {room} = useParams();
 
     const socketRef = useRef(null);
 
@@ -22,8 +24,9 @@ export default function LiveChat() {
             socketRef.current = newSocket;
 
             if (token) {
+                
                 const decoded = jwtDecode(token);
-                newSocket.emit('register', decoded.email);
+                newSocket.emit('register', decoded.email, room);
             }
 
             newSocket.on('receiveMessage', (message) => {
@@ -43,7 +46,7 @@ export default function LiveChat() {
             if (!newMessage.trim()) return;
 
             const message = { user: decoded.email, text: newMessage };
-            socketRef.current.emit('sendMessage', message);
+            socketRef.current.emit('sendMessage', {room, message});
             setNewMessage('');
         }
     };
