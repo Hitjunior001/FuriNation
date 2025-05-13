@@ -28,9 +28,9 @@ Analisar dados e comportamentos dos fãs de time E-SPORTS para oferecer conteúd
 # Clone o repositório
 git clone https://github.com/Hitjunior001/furinNation.git
 cd /furinNation
-npm install
 
-# Execute a aplicação
+#Em ambos as pastas, client e server
+npm install
 npm run dev
 ```
 
@@ -38,7 +38,7 @@ Configure o Firebase:
 
 Crie um projeto em https://console.firebase.google.com Ative a autenticação e realtime Database
 
-Crie um arquivo .env na raiz com as credenciais:
+Crie um arquivo .env na raiz da pasta server com as credenciais:
 
 .env
 ```
