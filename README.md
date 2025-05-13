@@ -1,10 +1,10 @@
 # 🐆 FuriNation — Plataforma Inteligente de Engajamento com Fãs
 
-**FuriNation** é uma plataforma inovadora focada em entender e se conectar com os fãs da FURIA por meio de dados de redes sociais, interações e preferências personalizadas. Desenvolvida para criar experiências únicas, fortalecer a comunidade e aproximar os torcedores do time com tecnologia de ponta.
+**FuriNation** é uma plataforma inovadora focada em entender e se conectar com os fãs de time E-SPORTS por meio de dados de redes sociais, interações e preferências personalizadas. Desenvolvida para criar experiências únicas, fortalecer a comunidade e aproximar os torcedores do time.
 
 ## 🎯 Objetivo
 
-Analisar dados e comportamentos dos fãs da FURIA para oferecer conteúdos personalizados, insights estratégicos para a equipe e uma jornada interativa para o torcedor.
+Analisar dados e comportamentos dos fãs de time E-SPORTS para oferecer conteúdos personalizados, além de criar uma plataforma para os torcedores acompanhar seu time em tempo real
 
 ## 🔥 Funcionalidades
 
