@@ -31,7 +31,8 @@ cd /furinNation
 
 #Em ambos as pastas, client e server
 npm install
-npm run dev
+npm run dev no cliente
+npm start no server
 ```
 
 Configure o Firebase:
